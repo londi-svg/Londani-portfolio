@@ -1,0 +1,427 @@
+
+/* =========================
+   GOOGLE FONTS
+========================= */
+
+:root{
+
+    --primary:#0F172A;
+    --secondary:#1E293B;
+    --accent:#2563EB;
+    --background:#F8FAFC;
+    --text:#111827;
+    --white:#FFFFFF;
+
+}
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    line-height:1.6;
+
+}
+
+img{
+
+    max-width:100%;
+    display:block;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+ul{
+
+    list-style:none;
+
+}
+/* =========================
+   GLOBAL
+========================= */
+
+.container{
+
+    width:min(90%,1200px);
+
+    margin:auto;
+
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+    background:var(--white);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+
+}
+
+.navbar{
+
+    width:min(90%,1200px);
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:1.2rem 0;
+
+}
+
+.logo a{
+
+    text-decoration:none;
+
+    font-size:2.5rem;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+    letter-spacing:-2px;
+
+    transition:.3s;
+
+}
+
+.logo span{
+
+    color:var(--accent);
+
+}
+
+.logo a:hover{
+
+    opacity:.8;
+
+}
+
+.logo{
+
+    transition:.35s;
+
+}
+
+.logo:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+
+.nav-links{
+
+    display:flex;
+
+    gap:2rem;
+
+}
+
+.nav-links a{
+
+    font-weight:500;
+
+    transition:.3s;
+
+}
+
+.nav-links a:hover{
+
+    color:var(--accent);
+
+}
+
+nav ul li a{
+
+    position:relative;
+
+}
+
+nav ul li a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+    width:0;
+
+    height:3px;
+
+    background:var(--accent);
+
+    transition:.35s;
+
+}
+nav ul li a:hover::after{
+
+    width:100%;
+
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    min-height:90vh;
+
+    display:flex;
+
+    align-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #F8FAFC 0%,
+        #EEF4FF 100%
+    );
+
+}
+
+.hero-container{
+
+    width:min(90%,1200px);
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:60% 40%;
+
+    align-items:center;
+
+    gap:5rem;
+
+    min-height:90vh;
+
+}
+
+.hero-intro{
+
+    color:var(--accent);
+
+    font-weight:600;
+
+    font-size:1.3rem;
+
+    margin-bottom:.5rem;
+
+}
+
+.hero h1{
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:5.2rem;
+
+    line-height:1.1;
+
+     margin:.5rem 0;
+    color:var(--primary);
+
+}
+
+.hero h2{
+
+    font-size:2rem;
+
+    font-weight:500;
+
+    margin-top:.8rem;
+
+    color:#475569;
+
+}
+
+.hero-description{
+
+     margin-top:2rem;
+
+    line-height:1.8;
+
+    font-size:1.2rem;
+
+    color:#475569;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:1rem;
+
+    margin-top:2rem;
+
+}
+
+.btn{
+
+    padding:15px 30px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+     transition:all .35s ease;
+
+}
+
+.btn-primary{
+
+    background:var(--accent);
+
+    color:white;
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 25px rgba(37,99,235,.3);
+
+}
+
+
+.btn-secondary{
+
+    border:2px solid var(--accent);
+
+    color:var(--accent);
+
+}
+
+.btn-secondary:hover{
+
+    background:var(--accent);
+
+    color:white;
+
+}
+
+.hero-image{
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+.hero-image img{
+
+    width:400px;
+
+    border-radius:50%;
+
+    border:8px solid white;
+
+    box-shadow:0 25px 50px rgba(0,0,0,.15);
+
+}
+
+.dynamic-role{
+
+    margin:1rem 0 2rem;
+
+    font-size:1.35rem;
+
+    font-weight:600;
+
+    color:var(--accent);
+
+    min-height:35px;
+
+}
+
+.typing-text{
+
+    margin:1rem 0 2rem;
+
+    font-size:2rem;
+
+    font-weight:600;
+
+    color:var(--accent);
+
+    min-height:45px;
+
+    margin-top:30px;
+
+    margin-bottom:35px;
+
+
+}
+
+#typing{
+
+    border-right:4px solid #2563EB;
+
+    padding-right:4px;
+
+    animation:blink .7s infinite;
+
+}
+
+@keyframes blink{
+
+    0%{
+        border-color:#2563EB;
+    }
+
+    50%{
+        border-color:transparent;
+    }
+
+    100%{
+        border-color:#2563EB;
+    }
+
+}
+
+
