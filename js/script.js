@@ -1,71 +1,94 @@
 
 
-const roles = [
+// =========================
+// Skills Carousel
+// =========================
+const dots = document.querySelectorAll(".dot");
+const cards = document.querySelectorAll(".skill-card");
 
-    "Business Analysis",
+const nextBtn = document.getElementById("nextBtn");
 
-    "Cybersecurity",
+const prevBtn = document.getElementById("prevBtn");
 
-    "Cloud Computing",
+let currentCard = 0;
 
-    "Enterprise Systems",
 
-    "Data Analytics",
+function showCard(index){
 
-    "Information Systems"
+    cards.forEach(card =>{
 
-];
+        card.classList.remove("active");
 
-const typingText = document.getElementById("typing-text");
+    });
 
-let roleIndex = 0;
+    dots.forEach(dot =>{
 
-let charIndex = 0;
+        dot.classList.remove("active");
 
-let deleting = false;
+    });
 
-function typeEffect(){
+    cards[index].classList.add("active");
 
-    const currentRole = roles[roleIndex];
-
-    if(!deleting){
-
-        typingText.textContent =
-        currentRole.substring(0,charIndex++);
-
-        if(charIndex > currentRole.length){
-
-            deleting = true;
-
-            setTimeout(typeEffect,1500);
-
-            return;
-
-        }
-
-    }else{
-
-        typingText.textContent =
-        currentRole.substring(0,charIndex--);
-
-        if(charIndex < 0){
-
-            deleting = false;
-
-            roleIndex++;
-
-            if(roleIndex >= roles.length){
-
-                roleIndex = 0;
-
-            }
-
-        }
-
-    }
-
-    setTimeout(typeEffect,deleting ? 50 : 90);
+    dots[index].classList.add("active");
 
 }
 
-typeEffect();
+function nextCard(){
+
+    currentCard++;
+
+    if(currentCard >= cards.length){
+
+        currentCard = 0;
+
+    }
+
+    showCard(currentCard);
+
+}
+
+function previousCard(){
+
+    currentCard--;
+
+    if(currentCard < 0){
+
+        currentCard = cards.length - 1;
+
+    }
+
+    showCard(currentCard);
+
+}
+
+nextBtn.addEventListener("click", nextCard);
+
+prevBtn.addEventListener("click", previousCard);
+
+let autoSlide = setInterval(nextCard, 7000);
+
+const wrapper = document.querySelector(".cards-wrapper");
+
+wrapper.addEventListener("mouseenter",()=>{
+
+    clearInterval(autoSlide);
+
+});
+
+wrapper.addEventListener("mouseleave",()=>{
+
+    autoSlide = setInterval(nextCard,7000);
+
+});
+
+dots.forEach((dot,index)=>{
+
+    dot.addEventListener("click",()=>{
+
+        currentCard = index;
+
+        showCard(currentCard);
+
+    });
+
+});
