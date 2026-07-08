@@ -1,94 +1,161 @@
 
+// =========================
+// Hero Typing Animation
+// =========================
 
+const roles = [
+    "Cloud Computing",
+    "Cybersecurity",
+    "Business Analysis",
+    "Enterprise Technology",
+    "Data Analytics"
+];
+
+const typingText = document.getElementById("typing-text");
+
+let roleIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typeEffect() {
+
+    if (!typingText) return;
+
+    const currentRole = roles[roleIndex];
+
+    if (!isDeleting) {
+
+        typingText.textContent = currentRole.substring(0, charIndex);
+
+        charIndex++;
+
+        if (charIndex > currentRole.length) {
+
+            isDeleting = true;
+
+            setTimeout(typeEffect, 1500);
+
+            return;
+
+        }
+
+    } else {
+
+        typingText.textContent = currentRole.substring(0, charIndex);
+
+        charIndex--;
+
+        if (charIndex < 0) {
+
+            isDeleting = false;
+
+            roleIndex = (roleIndex + 1) % roles.length;
+
+            charIndex = 0;
+
+        }
+
+    }
+
+    setTimeout(typeEffect, isDeleting ? 50 : 100);
+
+}
+
+typeEffect();
 // =========================
 // Skills Carousel
 // =========================
-const dots = document.querySelectorAll(".dot");
+
 const cards = document.querySelectorAll(".skill-card");
+const dots = document.querySelectorAll(".dot");
 
 const nextBtn = document.getElementById("nextBtn");
-
 const prevBtn = document.getElementById("prevBtn");
-
-let currentCard = 0;
-
-
-function showCard(index){
-
-    cards.forEach(card =>{
-
-        card.classList.remove("active");
-
-    });
-
-    dots.forEach(dot =>{
-
-        dot.classList.remove("active");
-
-    });
-
-    cards[index].classList.add("active");
-
-    dots[index].classList.add("active");
-
-}
-
-function nextCard(){
-
-    currentCard++;
-
-    if(currentCard >= cards.length){
-
-        currentCard = 0;
-
-    }
-
-    showCard(currentCard);
-
-}
-
-function previousCard(){
-
-    currentCard--;
-
-    if(currentCard < 0){
-
-        currentCard = cards.length - 1;
-
-    }
-
-    showCard(currentCard);
-
-}
-
-nextBtn.addEventListener("click", nextCard);
-
-prevBtn.addEventListener("click", previousCard);
-
-let autoSlide = setInterval(nextCard, 7000);
 
 const wrapper = document.querySelector(".cards-wrapper");
 
-wrapper.addEventListener("mouseenter",()=>{
+let currentCard = 0;
 
-    clearInterval(autoSlide);
+if (cards.length > 0) {
 
-});
+    function showCard(index){
 
-wrapper.addEventListener("mouseleave",()=>{
+        cards.forEach(card => card.classList.remove("active"));
 
-    autoSlide = setInterval(nextCard,7000);
+        if(dots.length){
+            dots.forEach(dot => dot.classList.remove("active"));
+        }
 
-});
+        cards[index].classList.add("active");
 
-dots.forEach((dot,index)=>{
+        if(dots.length){
+            dots[index].classList.add("active");
+        }
 
-    dot.addEventListener("click",()=>{
+    }
 
-        currentCard = index;
+    function nextCard(){
+
+        currentCard = (currentCard + 1) % cards.length;
 
         showCard(currentCard);
 
-    });
+    }
 
-});
+    function previousCard(){
+
+        currentCard = (currentCard - 1 + cards.length) % cards.length;
+
+        showCard(currentCard);
+
+    }
+
+    if(nextBtn){
+
+        nextBtn.addEventListener("click", nextCard);
+
+    }
+
+    if(prevBtn){
+
+        prevBtn.addEventListener("click", previousCard);
+
+    }
+
+    let autoSlide = setInterval(nextCard,7000);
+
+    if(wrapper){
+
+        wrapper.addEventListener("mouseenter",()=>{
+
+            clearInterval(autoSlide);
+
+        });
+
+        wrapper.addEventListener("mouseleave",()=>{
+
+            autoSlide = setInterval(nextCard,7000);
+
+        });
+
+    }
+
+    if(dots.length){
+
+        dots.forEach((dot,index)=>{
+
+            dot.addEventListener("click",()=>{
+
+                currentCard = index;
+
+                showCard(currentCard);
+
+            });
+
+        });
+
+    }
+
+    showCard(currentCard);
+
+}
