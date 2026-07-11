@@ -11,8 +11,8 @@ const roles = [
     "Data Analytics"
 ];
 
-const typingText = document.getElementById("typing-text");
 
+const typingText = document.getElementById("typing");
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
